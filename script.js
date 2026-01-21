@@ -281,4 +281,33 @@ if ('IntersectionObserver' in window) {
     });
 }
 
+// Contact Form Submission
+const contactFormElement = document.getElementById('contactForm');
+if (contactFormElement) {
+    contactFormElement.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const inquiry = {
+            name: document.getElementById('contactName').value,
+            email: document.getElementById('contactEmail').value,
+            phone: document.getElementById('contactPhone').value,
+            program: document.getElementById('contactProgram').value,
+            message: document.getElementById('contactMessage').value,
+            date: new Date().toISOString()
+        };
+
+        // Save to localStorage
+        let inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
+        inquiries.push(inquiry);
+        localStorage.setItem('inquiries', JSON.stringify(inquiries));
+
+        // Show success message
+        alert('Thank you for your inquiry! We will get back to you soon.');
+        
+        // Reset form
+        contactFormElement.reset();
+    });
+}
+
 console.log('EduLearn Online - Website loaded successfully!');
+
