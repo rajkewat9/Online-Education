@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - EduLearn Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile-section {
+            padding: 100px 0 60px;
+            background: var(--bg-light);
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .profile-info h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .profile-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-card h2 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .profile-card h2 i {
+            color: var(--primary-color);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--bg-light);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .edit-profile-btn {
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .stat-box {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box h3 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-box p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .activity-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            background: var(--bg-light);
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background: #e5e7eb;
+            transform: translateX(5px);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .activity-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 768px) {
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>EduLearn Online</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#programs">Programs</a></li>
+                    <li><a href="specializations.html">Specializations</a></li>
+                    <li><a href="fees.html">Fee Structure</a></li>
+                    <li id="userMenuContainer">
+                        <a href="login.html" class="btn-login" id="loginBtn">Login</a>
+                        <div class="user-dropdown" id="userDropdown" style="display: none;">
+                            <button class="user-menu-btn" id="userMenuBtn">
+                                <i class="fas fa-user-circle"></i>
+                                <span id="userName">User</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content" id="dropdownContent">
+                                <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="my-courses.html"><i class="fas fa-book"></i> My Courses</a>
+                                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar" id="userAvatar">U</div>
+                <div class="profile-info">
+                    <h1 id="profileName">User Name</h1>
+                    <p id="profileEmail">user@example.com</p>
+                    <div class="profile-meta">
+                        <div class="profile-meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Joined January 2026</span>
+                        </div>
+                        <div class="profile-meta-item">
+                            <i class="fas fa-book"></i>
+                            <span>1 Course Enrolled</span>
+                        </div>
+                        <div class="profile-meta-item">
+                            <i class="fas fa-award"></i>
+                            <span>Active Student</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <!-- Personal Information -->
+                <div class="profile-card">
+                    <h2><i class="fas fa-user"></i> Personal Information</h2>
+                    <div class="info-row">
+                        <span class="info-label">Full Name</span>
+                        <span class="info-value" id="infoName">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Email Address</span>
+                        <span class="info-value" id="infoEmail">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Phone Number</span>
+                        <span class="info-value" id="infoPhone">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Program</span>
+                        <span class="info-value" id="infoProgram">-</span>
+                    </div>
+                    <button class="btn btn-primary edit-profile-btn" onclick="window.location.href='settings.html'">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                </div>
+
+                <!-- Academic Progress -->
+                <div class="profile-card">
+                    <h2><i class="fas fa-chart-line"></i> Academic Progress</h2>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <i class="fas fa-book-open"></i>
+                            <h3>1</h3>
+                            <p>Courses Enrolled</p>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-tasks"></i>
+                            <h3>0%</h3>
+                            <p>Completion</p>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-clock"></i>
+                            <h3>0h</h3>
+                            <p>Learning Hours</p>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-certificate"></i>
+                            <h3>0</h3>
+                            <p>Certificates</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="profile-card full-width">
+                    <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Account Created</h4>
+                                <p>You joined EduLearn Online - Welcome aboard!</p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Course Selected</h4>
+                                <p>You've shown interest in your chosen program</p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Next Steps</h4>
+                                <p>Complete your enrollment to start learning</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load user data
+            const userName = localStorage.getItem('userName') || 'User';
+            const userEmail = localStorage.getItem('userEmail') || 'user@example.com';
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+            // Update profile header
+            document.getElementById('profileName').textContent = userName;
+            document.getElementById('profileEmail').textContent = userEmail;
+            
+            // Set avatar initial
+            const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase();
+            document.getElementById('userAvatar').textContent = initials;
+
+            // Update personal information
+            document.getElementById('infoName').textContent = userName;
+            document.getElementById('infoEmail').textContent = userEmail;
+            document.getElementById('infoPhone').textContent = userData.phone || 'Not provided';
+            
+            // Map program codes to full names
+            const programNames = {
+                'mba': 'MBA - Master of Business Administration',
+                'mca': 'MCA - Master of Computer Applications',
+                'bba': 'BBA - Bachelor of Business Administration',
+                'bca': 'BCA - Bachelor of Computer Applications',
+                'ma': 'MA - Master of Arts',
+                'ba': 'BA - Bachelor of Arts'
+            };
+            
+            document.getElementById('infoProgram').textContent = programNames[userData.program] || userData.program || 'Not selected';
+        });
+    </script>
+</body>
+</html>

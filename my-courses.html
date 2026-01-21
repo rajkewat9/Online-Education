@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Courses - EduLearn Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .courses-section {
+            padding: 100px 0 60px;
+            background: var(--bg-light);
+            min-height: 100vh;
+        }
+
+        .courses-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .courses-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .courses-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .course-banner {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-banner::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .course-icon {
+            font-size: 4rem;
+            color: white;
+            z-index: 1;
+        }
+
+        .course-body {
+            padding: 2rem;
+        }
+
+        .course-title {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .course-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .course-meta-item i {
+            color: var(--primary-color);
+        }
+
+        .progress-section {
+            margin: 1.5rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .course-modules {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+        }
+
+        .course-modules h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .module-list {
+            list-style: none;
+        }
+
+        .module-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .module-item:last-child {
+            border-bottom: none;
+        }
+
+        .module-name {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .module-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-locked {
+            background: #e5e7eb;
+            color: var(--text-light);
+        }
+
+        .status-available {
+            background: #dbeafe;
+            color: var(--primary-color);
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .course-actions .btn {
+            flex: 1;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .empty-state i {
+            font-size: 5rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h2 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .courses-header h1 {
+                font-size: 2rem;
+            }
+
+            .course-actions {
+                flex-direction: column;
+            }
+
+            .course-meta {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>EduLearn Online</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#programs">Programs</a></li>
+                    <li><a href="specializations.html">Specializations</a></li>
+                    <li><a href="fees.html">Fee Structure</a></li>
+                    <li id="userMenuContainer">
+                        <a href="login.html" class="btn-login" id="loginBtn">Login</a>
+                        <div class="user-dropdown" id="userDropdown" style="display: none;">
+                            <button class="user-menu-btn" id="userMenuBtn">
+                                <i class="fas fa-user-circle"></i>
+                                <span id="userName">User</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content" id="dropdownContent">
+                                <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="my-courses.html"><i class="fas fa-book"></i> My Courses</a>
+                                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Courses Section -->
+    <section class="courses-section">
+        <div class="container">
+            <div class="courses-header">
+                <h1><i class="fas fa-book-reader"></i> My Learning Dashboard</h1>
+                <p>Track your progress and continue your learning journey</p>
+            </div>
+
+            <div class="courses-tabs">
+                <button class="tab-btn active">
+                    <i class="fas fa-play-circle"></i> In Progress
+                </button>
+                <button class="tab-btn">
+                    <i class="fas fa-check-circle"></i> Completed
+                </button>
+                <button class="tab-btn">
+                    <i class="fas fa-bookmark"></i> Saved
+                </button>
+            </div>
+
+            <div id="coursesContainer">
+                <!-- Course card will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            const userProgram = userData.program;
+
+            const coursesContainer = document.getElementById('coursesContainer');
+
+            // Program details mapping
+            const programDetails = {
+                'mba': {
+                    title: 'MBA - Master of Business Administration',
+                    icon: 'fa-briefcase',
+                    duration: '2 Years',
+                    modules: [
+                        'Management Fundamentals',
+                        'Organizational Behavior',
+                        'Marketing Management',
+                        'Financial Management',
+                        'Strategic Management',
+                        'Business Analytics'
+                    ]
+                },
+                'mca': {
+                    title: 'MCA - Master of Computer Applications',
+                    icon: 'fa-code',
+                    duration: '2 Years',
+                    modules: [
+                        'Programming Fundamentals',
+                        'Data Structures & Algorithms',
+                        'Database Management',
+                        'Web Technologies',
+                        'Cloud Computing',
+                        'Software Engineering'
+                    ]
+                },
+                'bba': {
+                    title: 'BBA - Bachelor of Business Administration',
+                    icon: 'fa-chart-line',
+                    duration: '3 Years',
+                    modules: [
+                        'Business Communication',
+                        'Principles of Management',
+                        'Financial Accounting',
+                        'Marketing Management',
+                        'Human Resource Management',
+                        'Entrepreneurship'
+                    ]
+                },
+                'bca': {
+                    title: 'BCA - Bachelor of Computer Applications',
+                    icon: 'fa-laptop-code',
+                    duration: '3 Years',
+                    modules: [
+                        'C Programming',
+                        'Computer Fundamentals',
+                        'Data Structures',
+                        'Java Programming',
+                        'Web Development',
+                        'Mobile App Development'
+                    ]
+                },
+                'ma': {
+                    title: 'MA - Master of Arts',
+                    icon: 'fa-book-open',
+                    duration: '2 Years',
+                    modules: [
+                        'Research Methodology',
+                        'Core Subject Studies',
+                        'Critical Theory',
+                        'Advanced Topics',
+                        'Literature Review',
+                        'Dissertation Writing'
+                    ]
+                },
+                'ba': {
+                    title: 'BA - Bachelor of Arts',
+                    icon: 'fa-pen-fancy',
+                    duration: '3 Years',
+                    modules: [
+                        'Foundation Courses',
+                        'Communication Skills',
+                        'Core Subject Studies',
+                        'Optional Papers',
+                        'Research Methodology',
+                        'Project Work'
+                    ]
+                }
+            };
+
+            if (userProgram && programDetails[userProgram]) {
+                const course = programDetails[userProgram];
+                coursesContainer.innerHTML = `
+                    <div class="course-card">
+                        <div class="course-banner">
+                            <i class="fas ${course.icon} course-icon"></i>
+                        </div>
+                        <div class="course-body">
+                            <h2 class="course-title">${course.title}</h2>
+                            <div class="course-meta">
+                                <div class="course-meta-item">
+                                    <i class="far fa-clock"></i>
+                                    <span>${course.duration}</span>
+                                </div>
+                                <div class="course-meta-item">
+                                    <i class="fas fa-book"></i>
+                                    <span>${course.modules.length} Modules</span>
+                                </div>
+                                <div class="course-meta-item">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>Certificate Included</span>
+                                </div>
+                            </div>
+
+                            <div class="progress-section">
+                                <div class="progress-label">
+                                    <span>Course Progress</span>
+                                    <span>0%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <div class="course-modules">
+                                <h3><i class="fas fa-list"></i> Course Modules</h3>
+                                <ul class="module-list">
+                                    ${course.modules.map((module, index) => `
+                                        <li class="module-item">
+                                            <span class="module-name">
+                                                <i class="fas fa-play-circle"></i>
+                                                Module ${index + 1}: ${module}
+                                            </span>
+                                            <span class="module-status ${index === 0 ? 'status-available' : 'status-locked'}">
+                                                ${index === 0 ? 'Start Now' : 'Locked'}
+                                            </span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="course-actions">
+                                <button class="btn btn-primary" onclick="alert('Course content will be available after enrollment payment is confirmed.')">
+                                    <i class="fas fa-play"></i> Start Learning
+                                </button>
+                                <button class="btn btn-outline" onclick="window.location.href='fees.html'">
+                                    <i class="fas fa-info-circle"></i> View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                coursesContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-book-open"></i>
+                        <h2>No Courses Enrolled Yet</h2>
+                        <p>Start your learning journey by enrolling in a program</p>
+                        <a href="index.html#programs" class="btn btn-primary btn-large">
+                            <i class="fas fa-search"></i> Browse Programs
+                        </a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

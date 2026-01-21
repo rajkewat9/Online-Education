@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - EduLearn Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .settings-section {
+            padding: 100px 0 60px;
+            background: var(--bg-light);
+            min-height: 100vh;
+        }
+
+        .settings-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .settings-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .settings-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        .settings-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            height: fit-content;
+            box-shadow: var(--shadow);
+        }
+
+        .settings-nav {
+            list-style: none;
+        }
+
+        .settings-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .settings-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .settings-nav a:hover,
+        .settings-nav a.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .settings-content {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .settings-panel {
+            display: none;
+        }
+
+        .settings-panel.active {
+            display: block;
+        }
+
+        .settings-panel h2 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .settings-form {
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-hint {
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .notification-info h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .notification-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 30px;
+            transition: 0.4s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+
+        .danger-zone {
+            margin-top: 3rem;
+            padding: 2rem;
+            border: 2px solid #ef4444;
+            border-radius: 10px;
+        }
+
+        .danger-zone h3 {
+            color: #ef4444;
+            margin-bottom: 1rem;
+        }
+
+        .danger-zone p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        @media (max-width: 968px) {
+            .settings-container {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-sidebar {
+                position: sticky;
+                top: 80px;
+            }
+
+            .settings-nav {
+                display: flex;
+                overflow-x: auto;
+                gap: 0.5rem;
+            }
+
+            .settings-nav li {
+                margin-bottom: 0;
+            }
+
+            .settings-nav a {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>EduLearn Online</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#programs">Programs</a></li>
+                    <li><a href="specializations.html">Specializations</a></li>
+                    <li><a href="fees.html">Fee Structure</a></li>
+                    <li id="userMenuContainer">
+                        <a href="login.html" class="btn-login" id="loginBtn">Login</a>
+                        <div class="user-dropdown" id="userDropdown" style="display: none;">
+                            <button class="user-menu-btn" id="userMenuBtn">
+                                <i class="fas fa-user-circle"></i>
+                                <span id="userName">User</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content" id="dropdownContent">
+                                <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="my-courses.html"><i class="fas fa-book"></i> My Courses</a>
+                                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Settings Section -->
+    <section class="settings-section">
+        <div class="container">
+            <div class="settings-header">
+                <h1><i class="fas fa-cog"></i> Account Settings</h1>
+                <p>Manage your account preferences and settings</p>
+            </div>
+
+            <div class="settings-container">
+                <!-- Sidebar -->
+                <div class="settings-sidebar">
+                    <ul class="settings-nav">
+                        <li><a href="#" class="active" data-panel="profile"><i class="fas fa-user"></i> Profile</a></li>
+                        <li><a href="#" data-panel="account"><i class="fas fa-key"></i> Account</a></li>
+                        <li><a href="#" data-panel="notifications"><i class="fas fa-bell"></i> Notifications</a></li>
+                        <li><a href="#" data-panel="privacy"><i class="fas fa-shield-alt"></i> Privacy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Content -->
+                <div class="settings-content">
+                    <!-- Profile Panel -->
+                    <div class="settings-panel active" id="profile">
+                        <h2>Edit Profile</h2>
+                        <form class="settings-form" id="profileForm">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                                <small class="form-hint">This is your login email</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="program">Enrolled Program</label>
+                                <select id="program" name="program">
+                                    <option value="">Select Program</option>
+                                    <option value="mba">MBA</option>
+                                    <option value="mca">MCA</option>
+                                    <option value="bba">BBA</option>
+                                    <option value="bca">BCA</option>
+                                    <option value="ma">MA</option>
+                                    <option value="ba">BA</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                                <button type="button" class="btn btn-outline" onclick="loadProfileData()">
+                                    <i class="fas fa-undo"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Account Panel -->
+                    <div class="settings-panel" id="account">
+                        <h2>Account Security</h2>
+                        <form class="settings-form" id="passwordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" name="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" name="newPassword" required>
+                                <small class="form-hint">At least 8 characters with letters and numbers</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-lock"></i> Update Password
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="danger-zone">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
+                            <p>Once you delete your account, there is no going back. Please be certain.</p>
+                            <button class="btn btn-danger" onclick="deleteAccount()">
+                                <i class="fas fa-trash"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Panel -->
+                    <div class="settings-panel" id="notifications">
+                        <h2>Notification Preferences</h2>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Email Notifications</h4>
+                                <p>Receive updates about your courses via email</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Course Updates</h4>
+                                <p>Get notified when new content is available</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Assignment Reminders</h4>
+                                <p>Receive reminders about upcoming deadlines</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Marketing Emails</h4>
+                                <p>Receive promotional offers and updates</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Panel -->
+                    <div class="settings-panel" id="privacy">
+                        <h2>Privacy Settings</h2>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Profile Visibility</h4>
+                                <p>Make your profile visible to other students</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Show Online Status</h4>
+                                <p>Let others see when you're online</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Data Collection</h4>
+                                <p>Allow analytics to improve your experience</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            loadProfileData();
+
+            // Tab navigation
+            document.querySelectorAll('.settings-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all
+                    document.querySelectorAll('.settings-nav a').forEach(l => l.classList.remove('active'));
+                    document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked
+                    this.classList.add('active');
+                    const panelId = this.getAttribute('data-panel');
+                    document.getElementById(panelId).classList.add('active');
+                });
+            });
+
+            // Profile form submission
+            document.getElementById('profileForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    program: document.getElementById('program').value
+                };
+
+                localStorage.setItem('userData', JSON.stringify(formData));
+                localStorage.setItem('userName', formData.firstName + ' ' + formData.lastName);
+                localStorage.setItem('userEmail', formData.email);
+
+                alert('Profile updated successfully!');
+                window.location.reload();
+            });
+
+            // Password form submission
+            document.getElementById('passwordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                if (newPassword !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+
+                if (newPassword.length < 8) {
+                    alert('Password must be at least 8 characters!');
+                    return;
+                }
+
+                alert('Password updated successfully!');
+                this.reset();
+            });
+        });
+
+        function loadProfileData() {
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            
+            if (userData.firstName) document.getElementById('firstName').value = userData.firstName;
+            if (userData.lastName) document.getElementById('lastName').value = userData.lastName;
+            if (userData.email) document.getElementById('email').value = userData.email;
+            if (userData.phone) document.getElementById('phone').value = userData.phone;
+            if (userData.program) document.getElementById('program').value = userData.program;
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                if (confirm('This will permanently delete all your data. Continue?')) {
+                    localStorage.clear();
+                    alert('Account deleted successfully.');
+                    window.location.href = 'index.html';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

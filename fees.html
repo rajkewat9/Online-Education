@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Structure - EduLearn Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .fees-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 60px;
+            color: white;
+            text-align: center;
+        }
+        
+        .fees-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .fees-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+        
+        .fees-section {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+        
+        .fees-program {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 3rem;
+        }
+        
+        .fees-program-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .fees-program-header h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        
+        .fees-duration {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .fees-table {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #f9fafb;
+        }
+        
+        th {
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        td {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            color: var(--text-light);
+        }
+        
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .price-note {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+        
+        .specialization-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .popular-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .fees-benefits {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 3rem;
+        }
+        
+        .fees-benefits h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .benefit-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .benefit-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .payment-options {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .payment-options h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .payment-method {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .fees-cta {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .fees-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .fees-cta p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .scholarship-banner {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .scholarship-banner h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .scholarship-banner p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>EduLearn Online</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#programs">Programs</a></li>
+                    <li><a href="specializations.html">Specializations</a></li>
+                    <li><a href="fees.html" class="active">Fee Structure</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li id="userMenuContainer">
+                        <a href="login.html" class="btn-login" id="loginBtn">Login</a>
+                        <div class="user-dropdown" id="userDropdown" style="display: none;">
+                            <button class="user-menu-btn" id="userMenuBtn">
+                                <i class="fas fa-user-circle"></i>
+                                <span id="userName">User</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content" id="dropdownContent">
+                                <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="my-courses.html"><i class="fas fa-book"></i> My Courses</a>
+                                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="fees-hero">
+        <div class="container">
+            <h1>Fee Structure</h1>
+            <p>Transparent and affordable pricing for quality education</p>
+        </div>
+    </section>
+
+    <!-- Scholarship Banner -->
+    <section class="fees-section">
+        <div class="container">
+            <div class="scholarship-banner">
+                <h3><i class="fas fa-award"></i> Scholarships Available!</h3>
+                <p>Up to 30% scholarship for meritorious students. Apply now!</p>
+            </div>
+
+            <!-- MBA Fees -->
+            <div class="fees-program">
+                <div class="fees-program-header">
+                    <h2><i class="fas fa-briefcase"></i> MBA Programs</h2>
+                    <div class="fees-duration">
+                        <i class="far fa-clock"></i>
+                        <span>Duration: 2 Years</span>
+                    </div>
+                </div>
+                <div class="fees-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Specialization</th>
+                                <th>Total Fees</th>
+                                <th>Per Semester</th>
+                                <th>EMI Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="specialization-name">Marketing Management</span>
+                                    <span class="popular-badge">Popular</span>
+                                </td>
+                                <td>
+                                    <div class="price">₹1,20,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹30,000</td>
+                                <td>₹10,000/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Finance Management</span></td>
+                                <td>
+                                    <div class="price">₹1,20,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹30,000</td>
+                                <td>₹10,000/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Human Resource Management</span></td>
+                                <td>
+                                    <div class="price">₹1,15,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹28,750</td>
+                                <td>₹9,583/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Operations Management</span></td>
+                                <td>
+                                    <div class="price">₹1,15,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹28,750</td>
+                                <td>₹9,583/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">IT Management</span></td>
+                                <td>
+                                    <div class="price">₹1,25,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹31,250</td>
+                                <td>₹10,417/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">International Business</span></td>
+                                <td>
+                                    <div class="price">₹1,20,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹30,000</td>
+                                <td>₹10,000/month</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MCA Fees -->
+            <div class="fees-program">
+                <div class="fees-program-header">
+                    <h2><i class="fas fa-code"></i> MCA Programs</h2>
+                    <div class="fees-duration">
+                        <i class="far fa-clock"></i>
+                        <span>Duration: 2 Years</span>
+                    </div>
+                </div>
+                <div class="fees-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Specialization</th>
+                                <th>Total Fees</th>
+                                <th>Per Semester</th>
+                                <th>EMI Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="specialization-name">AI & Machine Learning</span>
+                                    <span class="popular-badge">Trending</span>
+                                </td>
+                                <td>
+                                    <div class="price">₹1,40,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹35,000</td>
+                                <td>₹11,667/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Data Science & Analytics</span></td>
+                                <td>
+                                    <div class="price">₹1,35,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹33,750</td>
+                                <td>₹11,250/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Cyber Security</span></td>
+                                <td>
+                                    <div class="price">₹1,35,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹33,750</td>
+                                <td>₹11,250/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Cloud Computing</span></td>
+                                <td>
+                                    <div class="price">₹1,30,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹32,500</td>
+                                <td>₹10,833/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Mobile App Development</span></td>
+                                <td>
+                                    <div class="price">₹1,25,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹31,250</td>
+                                <td>₹10,417/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Software Engineering</span></td>
+                                <td>
+                                    <div class="price">₹1,25,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹5,000</div>
+                                </td>
+                                <td>₹31,250</td>
+                                <td>₹10,417/month</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bachelor Programs Fees -->
+            <div class="fees-program">
+                <div class="fees-program-header">
+                    <h2><i class="fas fa-graduation-cap"></i> Bachelor Programs (BBA, BCA, BA)</h2>
+                    <div class="fees-duration">
+                        <i class="far fa-clock"></i>
+                        <span>Duration: 3 Years</span>
+                    </div>
+                </div>
+                <div class="fees-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Program</th>
+                                <th>Total Fees</th>
+                                <th>Per Semester</th>
+                                <th>EMI Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="specialization-name">BBA - Business Administration</span></td>
+                                <td>
+                                    <div class="price">₹1,35,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹3,000</div>
+                                </td>
+                                <td>₹22,500</td>
+                                <td>₹7,500/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">BCA - Computer Applications</span></td>
+                                <td>
+                                    <div class="price">₹1,50,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹3,000</div>
+                                </td>
+                                <td>₹25,000</td>
+                                <td>₹8,333/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">BA - Arts (All Specializations)</span></td>
+                                <td>
+                                    <div class="price">₹90,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹3,000</div>
+                                </td>
+                                <td>₹15,000</td>
+                                <td>₹5,000/month</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Master of Arts Fees -->
+            <div class="fees-program">
+                <div class="fees-program-header">
+                    <h2><i class="fas fa-book-open"></i> MA Programs</h2>
+                    <div class="fees-duration">
+                        <i class="far fa-clock"></i>
+                        <span>Duration: 2 Years</span>
+                    </div>
+                </div>
+                <div class="fees-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Specialization</th>
+                                <th>Total Fees</th>
+                                <th>Per Semester</th>
+                                <th>EMI Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="specialization-name">English Literature</span></td>
+                                <td>
+                                    <div class="price">₹80,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹3,000</div>
+                                </td>
+                                <td>₹20,000</td>
+                                <td>₹6,667/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Psychology</span></td>
+                                <td>
+                                    <div class="price">₹95,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹3,000</div>
+                                </td>
+                                <td>₹23,750</td>
+                                <td>₹7,917/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Economics</span></td>
+                                <td>
+                                    <div class="price">₹90,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹3,000</div>
+                                </td>
+                                <td>₹22,500</td>
+                                <td>₹7,500/month</td>
+                            </tr>
+                            <tr>
+                                <td><span class="specialization-name">Political Science</span></td>
+                                <td>
+                                    <div class="price">₹85,000</div>
+                                    <div class="price-note">+ Registration Fee: ₹3,000</div>
+                                </td>
+                                <td>₹21,250</td>
+                                <td>₹7,083/month</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- What's Included -->
+            <div class="fees-benefits">
+                <h2>What's Included in Your Fees</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-video"></i></div>
+                        <div class="benefit-content">
+                            <h3>Online Classes</h3>
+                            <p>Live and recorded lectures accessible 24/7</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-book"></i></div>
+                        <div class="benefit-content">
+                            <h3>Study Materials</h3>
+                            <p>Comprehensive e-books and resources</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="benefit-content">
+                            <h3>LMS Access</h3>
+                            <p>Advanced learning management system</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="benefit-content">
+                            <h3>Certification</h3>
+                            <p>Accredited degree upon completion</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                        <div class="benefit-content">
+                            <h3>Student Support</h3>
+                            <p>Dedicated academic counselors</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="benefit-content">
+                            <h3>Placement Assistance</h3>
+                            <p>Career guidance and job support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Options -->
+            <div class="payment-options">
+                <h2>Flexible Payment Options</h2>
+                <p>Choose the payment method that works best for you</p>
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h4>Semester-wise</h4>
+                        <p>Pay every 6 months</p>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-credit-card"></i>
+                        <h4>EMI Options</h4>
+                        <p>Monthly installments</p>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h4>One-time Payment</h4>
+                        <p>Get 5% discount</p>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-university"></i>
+                        <h4>Education Loan</h4>
+                        <p>Partner bank support</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="fees-cta">
+                <h2>Ready to Start Your Journey?</h2>
+                <p>Invest in your future with our quality education programs</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="signup.html" class="btn btn-primary btn-large">Apply Now</a>
+                    <a href="index.html#contact" class="btn btn-secondary btn-large">Contact Admissions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EduLearn Online</h3>
+                    <p>Empowering learners worldwide with accessible, quality online education.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#programs">Programs</a></li>
+                        <li><a href="specializations.html">Specializations</a></li>
+                        <li><a href="fees.html">Fee Structure</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                        <li><a href="#">EMI Calculator</a></li>
+                    </ul>
+    <script>
+        // Check login status
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+        });
+    </script>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 1800-123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@edulearnonline.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Learning City, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EduLearn Online. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

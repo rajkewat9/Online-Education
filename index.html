@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLearn Online - Online Education Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>EduLearn Online</span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="specializations.html">Specializations</a></li>
+                    <li><a href="fees.html">Fee Structure</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li id="userMenuContainer">
+                        <a href="login.html" class="btn-login" id="loginBtn">Login</a>
+                        <div class="user-dropdown" id="userDropdown" style="display: none;">
+                            <button class="user-menu-btn" id="userMenuBtn">
+                                <i class="fas fa-user-circle"></i>
+                                <span id="userName">User</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content" id="dropdownContent">
+                                <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="my-courses.html"><i class="fas fa-book"></i> My Courses</a>
+                                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Transform Your Future with Online Education</h1>
+                <p class="hero-subtitle">Explore world-class programs designed for working professionals and aspiring learners</p>
+                <div class="hero-buttons">
+                    <a href="#programs" class="btn btn-primary">Explore Programs</a>
+                    <a href="signup.html" class="btn btn-secondary">Apply Now</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>50,000+</h3>
+                        <p>Students Enrolled</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100+</h3>
+                        <p>Online Programs</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>95%</h3>
+                        <p>Placement Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose EduLearn Online?</h2>
+                <p>Experience flexible, quality education designed for your success</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Flexible Learning</h3>
+                    <p>Study at your own pace with 24/7 access to course materials and recorded lectures</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Expert Faculty</h3>
+                    <p>Learn from industry professionals and experienced educators</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Recognized Degrees</h3>
+                    <p>Earn accredited degrees and certifications valued by employers worldwide</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Career Support</h3>
+                    <p>Access career counseling, placement assistance, and networking opportunities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Programs</h2>
+                <p>Choose from a wide range of undergraduate and postgraduate programs</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400" alt="Business">
+                        <div class="program-badge">MBA</div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Master of Business Administration</h3>
+                        <p>Specializations: Marketing, Finance, HR, Operations</p>
+                        <ul class="program-details">
+                            <li><i class="far fa-clock"></i> 2 Years</li>
+                            <li><i class="fas fa-book"></i> Online</li>
+                            <li><i class="fas fa-calendar"></i> Rolling Admissions</li>
+                        </ul>
+                        <a href="javascript:void(0)" onclick="openCourseModal('mba')" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400" alt="Technology">
+                        <div class="program-badge">MCA</div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Master of Computer Applications</h3>
+                        <p>Specializations: AI/ML, Data Science, Cyber Security</p>
+                        <ul class="program-details">
+                            <li><i class="far fa-clock"></i> 2 Years</li>
+                            <li><i class="fas fa-book"></i> Online</li>
+                            <li><i class="fas fa-calendar"></i> Rolling Admissions</li>
+                        </ul>
+                        <a href="javascript:void(0)" onclick="openCourseModal('mca')" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" alt="BBA">
+                        <div class="program-badge">BBA</div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Bachelor of Business Administration</h3>
+                        <p>Build strong business fundamentals and leadership skills</p>
+                        <ul class="program-details">
+                            <li><i class="far fa-clock"></i> 3 Years</li>
+                            <li><i class="fas fa-book"></i> Online</li>
+                            <li><i class="fas fa-calendar"></i> Rolling Admissions</li>
+                        </ul>
+                        <a href="javascript:void(0)" onclick="openCourseModal('bba')" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400" alt="BCA">
+                        <div class="program-badge">BCA</div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Bachelor of Computer Applications</h3>
+                        <p>Start your journey in the world of technology</p>
+                        <ul class="program-details">
+                            <li><i class="far fa-clock"></i> 3 Years</li>
+                            <li><i class="fas fa-book"></i> Online</li>
+                            <li><i class="fas fa-calendar"></i> Rolling Admissions</li>
+                        </ul>
+                        <a href="javascript:void(0)" onclick="openCourseModal('bca')" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400" alt="MA">
+                        <div class="program-badge">MA</div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Master of Arts</h3>
+                        <p>Specializations: Economics, Psychology, English</p>
+                        <ul class="program-details">
+                            <li><i class="far fa-clock"></i> 2 Years</li>
+                            <li><i class="fas fa-book"></i> Online</li>
+                            <li><i class="fas fa-calendar"></i> Rolling Admissions</li>
+                        </ul>
+                        <a href="javascript:void(0)" onclick="openCourseModal('ma')" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400" alt="BA">
+                        <div class="program-badge">BA</div>
+                    </div>
+                    <div class="program-content">
+                        <h3>Bachelor of Arts</h3>
+                        <p>Explore humanities and social sciences</p>
+                        <ul class="program-details">
+                            <li><i class="far fa-clock"></i> 3 Years</li>
+                            <li><i class="fas fa-book"></i> Online</li>
+                            <li><i class="fas fa-calendar"></i> Rolling Admissions</li>
+                        </ul>
+                        <a href="javascript:void(0)" onclick="openCourseModal('ba')" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <h2>About EduLearn Online</h2>
+                    <p>EduLearn Online is a leading online education platform committed to providing accessible, high-quality education to learners worldwide. Our innovative learning approach combines academic excellence with practical skills development.</p>
+                    <p>With state-of-the-art learning management systems, interactive course content, and dedicated support, we ensure every student receives a world-class educational experience from anywhere in the world.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>UGC Approved Programs</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Industry-Relevant Curriculum</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Interactive Learning Platform</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Dedicated Student Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600" alt="About Us">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admissions Section -->
+    <section class="admissions" id="admissions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Admission Process</h2>
+                <p>Start your learning journey in just a few simple steps</p>
+            </div>
+            <div class="admission-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Program</h3>
+                    <p>Browse our programs and select the one that aligns with your career goals</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Submit Application</h3>
+                    <p>Complete the online application form with your details and documents</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Review & Approval</h3>
+                    <p>Our admissions team will review your application within 48 hours</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Start Learning</h3>
+                    <p>Once approved, access your courses and begin your educational journey</p>
+                </div>
+            </div>
+            <div class="admission-cta">
+                <a href="signup.html" class="btn btn-primary btn-large">Apply Now</a>
+                <a href="fees.html" class="btn btn-outline btn-large" style="margin-left: 1rem;">View Fee Structure</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Student Success Stories</h2>
+                <p>Hear from our alumni who transformed their careers</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>The MBA program helped me transition from a technical role to management. The flexible schedule allowed me to balance work and studies perfectly.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=33" alt="Student">
+                        <div>
+                            <h4>Priya Sharma</h4>
+                            <p>MBA Graduate, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>The MCA program gave me cutting-edge skills in AI and machine learning. I landed my dream job at a top tech company right after graduation.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Student">
+                        <div>
+                            <h4>Rahul Verma</h4>
+                            <p>MCA Graduate, 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>As a working professional, online education was my only option. The quality of teaching and support exceeded my expectations.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=45" alt="Student">
+                        <div>
+                            <h4>Anjali Patel</h4>
+                            <p>BBA Graduate, 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions? Our admissions team is here to help you.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>+91 1800-123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p>admissions@edulearnonline.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Visit Us</h4>
+                                <p>123 Education Street, Learning City, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Select Program of Interest</option>
+                                <option value="mba">MBA</option>
+                                <option value="mca">MCA</option>
+                                <option value="bba">BBA</option>
+                                <option value="bca">BCA</option>
+                                <option value="ma">MA</option>
+                                <option value="ba">BA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EduLearn Online</h3>
+                    <p>Empowering learners worldwide with accessible, quality online education.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="specializations.html">Specializations</a></li>
+                        <li><a href="fees.html">Fee Structure</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="specializations.html">MBA Programs</a></li>
+                        <li><a href="specializations.html">MCA Programs</a></li>
+                        <li><a href="#programs">BBA Programs</a></li>
+                        <li><a href="#programs">BCA Programs</a></li>
+                        <li><a href="specializations.html">Arts Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="login.html">Student Portal</a></li>
+                        <li><a href="#contact">Career Services</a></li>
+                        <li><a href="fees.html">Fee Structure</a></li>
+                        <li><a href="#contact">FAQs</a></li>
+                        <li><a href="signup.html">Apply Now</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EduLearn Online. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Course Details Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCourseModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="course-modal.js"></script>
+</body>
+</html>

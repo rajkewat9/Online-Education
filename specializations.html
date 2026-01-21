@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specializations - EduLearn Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .spec-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 60px;
+            color: white;
+            text-align: center;
+        }
+        
+        .spec-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .spec-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+        
+        .spec-section {
+            padding: 80px 0;
+        }
+        
+        .spec-program {
+            margin-bottom: 4rem;
+        }
+        
+        .spec-program-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 0;
+        }
+        
+        .spec-program-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .spec-program-header p {
+            opacity: 0.95;
+            font-size: 1.1rem;
+        }
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0;
+            background: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+        
+        .spec-card {
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .spec-card:hover {
+            background: #f9fafb;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            z-index: 1;
+        }
+        
+        .spec-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .spec-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .spec-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .spec-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .spec-features li {
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .spec-features i {
+            color: var(--primary-color);
+            margin-top: 0.3rem;
+        }
+        
+        .spec-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .spec-cta {
+            text-align: center;
+            padding: 3rem 0;
+            background: var(--bg-light);
+        }
+        
+        .spec-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .spec-cta p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>EduLearn Online</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#programs">Programs</a></li>
+                    <li><a href="specializations.html" class="active">Specializations</a></li>
+                    <li><a href="fees.html">Fee Structure</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li id="userMenuContainer">
+                        <a href="login.html" class="btn-login" id="loginBtn">Login</a>
+                        <div class="user-dropdown" id="userDropdown" style="display: none;">
+                            <button class="user-menu-btn" id="userMenuBtn">
+                                <i class="fas fa-user-circle"></i>
+                                <span id="userName">User</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content" id="dropdownContent">
+                                <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="my-courses.html"><i class="fas fa-book"></i> My Courses</a>
+                                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="spec-hero">
+        <div class="container">
+            <h1>Program Specializations</h1>
+            <p>Choose from diverse specializations tailored to industry demands</p>
+        </div>
+    </section>
+
+    <!-- MBA Specializations -->
+    <section class="spec-section">
+        <div class="container">
+            <div class="spec-program">
+                <div class="spec-program-header">
+                    <h2><i class="fas fa-briefcase"></i> MBA Specializations</h2>
+                    <p>Master of Business Administration - 2 Years Program</p>
+                </div>
+                <div class="spec-grid">
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Marketing Management</h3>
+                        <p>Master digital marketing, brand management, and consumer behavior</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Digital Marketing & SEO</li>
+                            <li><i class="fas fa-check"></i> Brand Strategy</li>
+                            <li><i class="fas fa-check"></i> Market Research</li>
+                            <li><i class="fas fa-check"></i> Consumer Analytics</li>
+                        </ul>
+                        <span class="spec-badge">Most Popular</span>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-coins"></i></div>
+                        <h3>Finance Management</h3>
+                        <p>Expertise in corporate finance, investment, and financial analysis</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Financial Planning</li>
+                            <li><i class="fas fa-check"></i> Investment Banking</li>
+                            <li><i class="fas fa-check"></i> Risk Management</li>
+                            <li><i class="fas fa-check"></i> Portfolio Management</li>
+                        </ul>
+                        <span class="spec-badge">High Demand</span>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-users"></i></div>
+                        <h3>Human Resource Management</h3>
+                        <p>Lead organizational development and talent management</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Talent Acquisition</li>
+                            <li><i class="fas fa-check"></i> Performance Management</li>
+                            <li><i class="fas fa-check"></i> Leadership Development</li>
+                            <li><i class="fas fa-check"></i> Employee Relations</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-cogs"></i></div>
+                        <h3>Operations Management</h3>
+                        <p>Optimize business processes and supply chain management</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Supply Chain Management</li>
+                            <li><i class="fas fa-check"></i> Process Optimization</li>
+                            <li><i class="fas fa-check"></i> Quality Management</li>
+                            <li><i class="fas fa-check"></i> Logistics & Planning</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>IT Management</h3>
+                        <p>Bridge technology and business strategy</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> IT Strategy</li>
+                            <li><i class="fas fa-check"></i> Project Management</li>
+                            <li><i class="fas fa-check"></i> Digital Transformation</li>
+                            <li><i class="fas fa-check"></i> Systems Integration</li>
+                        </ul>
+                        <span class="spec-badge">Tech-Focused</span>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-globe"></i></div>
+                        <h3>International Business</h3>
+                        <p>Navigate global markets and cross-border operations</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Global Trade</li>
+                            <li><i class="fas fa-check"></i> Export-Import Management</li>
+                            <li><i class="fas fa-check"></i> Cross-Cultural Management</li>
+                            <li><i class="fas fa-check"></i> International Finance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MCA Specializations -->
+            <div class="spec-program">
+                <div class="spec-program-header">
+                    <h2><i class="fas fa-code"></i> MCA Specializations</h2>
+                    <p>Master of Computer Applications - 2 Years Program</p>
+                </div>
+                <div class="spec-grid">
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Artificial Intelligence & Machine Learning</h3>
+                        <p>Build intelligent systems and predictive models</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Deep Learning</li>
+                            <li><i class="fas fa-check"></i> Neural Networks</li>
+                            <li><i class="fas fa-check"></i> Natural Language Processing</li>
+                            <li><i class="fas fa-check"></i> Computer Vision</li>
+                        </ul>
+                        <span class="spec-badge">Trending</span>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-database"></i></div>
+                        <h3>Data Science & Analytics</h3>
+                        <p>Extract insights from complex datasets</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Big Data Technologies</li>
+                            <li><i class="fas fa-check"></i> Statistical Analysis</li>
+                            <li><i class="fas fa-check"></i> Data Visualization</li>
+                            <li><i class="fas fa-check"></i> Predictive Modeling</li>
+                        </ul>
+                        <span class="spec-badge">High Salary</span>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Cyber Security</h3>
+                        <p>Protect systems and networks from threats</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Ethical Hacking</li>
+                            <li><i class="fas fa-check"></i> Network Security</li>
+                            <li><i class="fas fa-check"></i> Cryptography</li>
+                            <li><i class="fas fa-check"></i> Security Auditing</li>
+                        </ul>
+                        <span class="spec-badge">In Demand</span>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-cloud"></i></div>
+                        <h3>Cloud Computing</h3>
+                        <p>Design and manage cloud infrastructure</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> AWS, Azure, GCP</li>
+                            <li><i class="fas fa-check"></i> Cloud Architecture</li>
+                            <li><i class="fas fa-check"></i> DevOps & CI/CD</li>
+                            <li><i class="fas fa-check"></i> Containerization</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Mobile Application Development</h3>
+                        <p>Create innovative mobile solutions</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> iOS & Android Development</li>
+                            <li><i class="fas fa-check"></i> React Native & Flutter</li>
+                            <li><i class="fas fa-check"></i> UI/UX Design</li>
+                            <li><i class="fas fa-check"></i> App Monetization</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h3>Software Engineering</h3>
+                        <p>Master full-stack development and architecture</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> System Design</li>
+                            <li><i class="fas fa-check"></i> Microservices</li>
+                            <li><i class="fas fa-check"></i> Agile Methodologies</li>
+                            <li><i class="fas fa-check"></i> Software Testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MA Specializations -->
+            <div class="spec-program">
+                <div class="spec-program-header">
+                    <h2><i class="fas fa-book-open"></i> MA Specializations</h2>
+                    <p>Master of Arts - 2 Years Program</p>
+                </div>
+                <div class="spec-grid">
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-language"></i></div>
+                        <h3>English Literature</h3>
+                        <p>Explore literary traditions and critical theory</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Literary Analysis</li>
+                            <li><i class="fas fa-check"></i> Creative Writing</li>
+                            <li><i class="fas fa-check"></i> Contemporary Literature</li>
+                            <li><i class="fas fa-check"></i> Research Methods</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Psychology</h3>
+                        <p>Understand human behavior and mental processes</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Clinical Psychology</li>
+                            <li><i class="fas fa-check"></i> Counseling Techniques</li>
+                            <li><i class="fas fa-check"></i> Behavioral Analysis</li>
+                            <li><i class="fas fa-check"></i> Research & Statistics</li>
+                        </ul>
+                        <span class="spec-badge">Growing Field</span>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h3>Economics</h3>
+                        <p>Analyze economic systems and policy</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Macroeconomics</li>
+                            <li><i class="fas fa-check"></i> Econometrics</li>
+                            <li><i class="fas fa-check"></i> Development Economics</li>
+                            <li><i class="fas fa-check"></i> Economic Policy</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-icon"><i class="fas fa-landmark"></i></div>
+                        <h3>Political Science</h3>
+                        <p>Study governance, policy, and international relations</p>
+                        <ul class="spec-features">
+                            <li><i class="fas fa-check"></i> Political Theory</li>
+                            <li><i class="fas fa-check"></i> Public Administration</li>
+                            <li><i class="fas fa-check"></i> International Relations</li>
+                            <li><i class="fas fa-check"></i> Comparative Politics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="spec-cta">
+        <div class="container">
+            <h2>Ready to Specialize?</h2>
+            <p>Choose your specialization and start your journey towards expertise</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="fees.html" class="btn btn-primary btn-large">View Fee Structure</a>
+                <a href="signup.html" class="btn btn-secondary btn-large">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EduLearn Online</h3>
+                    <p>Empowering learners worldwide with accessible, quality online education.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#programs">Programs</a></li>
+                        <li><a href="specializations.html">Specializations</a></li>
+                        <li><a href="fees.html">Fee Structure</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 1800-123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@edulearnonline.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Learning City, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EduLearn Online. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Check login status
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+        });
+    </script>
+</body>
+</html>
