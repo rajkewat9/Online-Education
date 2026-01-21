@@ -404,8 +404,8 @@ function openCourseModal(courseId) {
         </div>
 
         <div class="modal-actions">
-            <a href="fees.html" class="btn btn-outline">View Fee Details</a>
-            <a href="signup.html" class="btn btn-primary">Apply Now</a>
+            <a href="pages/fees.html" class="btn btn-outline">View Fee Details</a>
+            <a href="pages/signup.html" class="btn btn-primary">Apply Now</a>
         </div>
     `;
 
