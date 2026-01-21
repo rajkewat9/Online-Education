@@ -139,28 +139,14 @@ document.querySelectorAll('.feature-card, .program-card, .testimonial-card, .ste
     observer.observe(el);
 });
 
-// Contact Form Submission
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form values
-    const formData = new FormData(contactForm);
-    
-    // Simulate form submission
-    alert('Thank you for your inquiry! Our admissions team will contact you within 24 hours.');
-    contactForm.reset();
-    
-    // In a real application, you would send this data to a server
-    // Example:
-    // fetch('/api/contact', {
-    //     method: 'POST',
-    //     body: formData
-    // }).then(response => response.json())
-    //   .then(data => console.log(data));
+// Program cards hover effect enhancement
+document.querySelectorAll('.program-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.3s ease';
+    });
 });
 
-// Counter animation for statistics
+// Scroll to top button (optional enhancement)
 const animateCounters = () => {
     const counters = document.querySelectorAll('.stat-item h3');
     
