@@ -113,14 +113,79 @@ class ChatWidget {
         }
     }
 
-    handleUserMessage(message) {
+    async handleUserMessage(message) {
         this.addMessage(message, 'user');
         
-        // Simulate AI thinking
-        setTimeout(() => {
-            const response = this.getAIResponse(message);
-            this.addMessage(response, 'bot');
-        }, 500);
+        // Show typing indicator
+        this.showTypingIndicator();
+        
+        try {
+            // Call backend API
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    conversationHistory: this.messages.map(msg => ({
+                        role: msg.type === 'user' ? 'user' : 'assistant',
+                        content: msg.text
+                    }))
+                })
+            });
+
+            const data = await response.json();
+            
+            // Remove typing indicator
+            this.removeTypingIndicator();
+            
+            if (data.success) {
+                this.addMessage(data.response, 'bot');
+                
+                // Store message history
+                this.messages.push(
+                    { type: 'user', text: message },
+                    { type: 'bot', text: data.response }
+                );
+            } else {
+                throw new Error('Failed to get response');
+            }
+        } catch (error) {
+            console.error('Chat error:', error);
+            this.removeTypingIndicator();
+            
+            // Fallback to local responses
+            const fallbackResponse = this.getAIResponse(message);
+            this.addMessage(fallbackResponse, 'bot');
+        }
+    }
+
+    showTypingIndicator() {
+        const messagesContainer = document.getElementById('chatMessages');
+        const typingHTML = `
+            <div class="chat-message bot-message typing-indicator" id="typingIndicator">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        `;
+        messagesContainer.insertAdjacentHTML('beforeend', typingHTML);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    removeTypingIndicator() {
+        const indicator = document.getElementById('typingIndicator');
+        if (indicator) {
+            indicator.remove();
+        }
     }
 
     addMessage(text, type) {
