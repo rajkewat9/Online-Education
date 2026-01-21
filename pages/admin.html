@@ -196,7 +196,12 @@
     <div class="admin-container hidden" id="adminPanel">
         <div class="header">
             <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
-            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="addTestInquiry()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                    <i class="fas fa-plus"></i> Add Test Inquiry
+                </button>
+                <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
         </div>
 
         <div class="stats">
@@ -260,9 +265,31 @@
             document.getElementById('errorMessage').style.display = 'none';
         }
 
+        function addTestInquiry() {
+            const testInquiry = {
+                name: 'Test User ' + Math.floor(Math.random() * 100),
+                email: 'test' + Math.floor(Math.random() * 1000) + '@example.com',
+                phone: '+91 ' + Math.floor(Math.random() * 9000000000 + 1000000000),
+                program: ['MBA', 'MCA', 'BBA', 'BCA', 'MA', 'BA'][Math.floor(Math.random() * 6)],
+                message: 'This is a test inquiry created from the admin panel for testing purposes.',
+                date: new Date().toISOString()
+            };
+
+            let inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
+            inquiries.push(testInquiry);
+            localStorage.setItem('inquiries', JSON.stringify(inquiries));
+            
+            alert('Test inquiry added successfully!');
+            loadInquiries();
+        }
+
         function loadInquiries() {
             const inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
             const inquiriesList = document.getElementById('inquiriesList');
+            
+            // Debug: Log inquiries to console
+            console.log('Total inquiries found:', inquiries.length);
+            console.log('Inquiries data:', inquiries);
             
             document.getElementById('totalInquiries').textContent = inquiries.length;
             
